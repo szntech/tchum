@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* Set the size of the div element that contains the map */
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--The div elements for the map and message -->
+  <div id="map"></div>
+  <form>
+    <input type="radio" id="measureDistance" name="mapMenu" value="measureDistance" checked>
+    <label for="measureDistance">MEASURE DISTANCE</label><br>
+    <input type="radio" id="createSquare" name="mapMenu" value="createSquare">
+    <label for="createSquare">CREATE SQAURE</label>
+    <fieldset disabled>
+      <label for="shita">Please choose a shita:</label>
+
+      <select id="shita">
+        <option value=".48006">R Chaim Noe</option>
+        <option value=".5772">Chazon Ish</option>
+        <option value=".53975">R Moshe</option>
+      </select>
+      <label for="amos">How Meany Amos?</label>
+      <input type="number" name="amos" id="amos" value="2000">
+      <label for="cityColor"></label>
+      <input type="color" id="cityColor" name="cityColor" value="#e66465">
+      <label for="tchumColor"></label>
+      <input type="color" id="tchumColor" name="tchumColor" value="#e66465">
+
+    </fieldset>
+
+  </form>
+  <div id="msg"></div>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyt1WK_0kG0c6c10mrBF3vRqDMQ7hCW_8&libraries=geometry">
+  </script>
+  <script src="./script2.js"></script>
+</body>
+
+</html>
