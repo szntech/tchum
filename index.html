@@ -8,22 +8,30 @@
       height: 600px;
       width: 100%;
     }
+
+    #pac-input {
+      position: absolute;
+      width: 40ch;
+      top: 20px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
   </style>
 </head>
 
 <body>
 
-  <!--The div elements for the map and message -->
   <div id="map"></div>
   <form>
     <input type="text" id="pac-input">
     <input type="radio" id="measureDistance" name="mapMenu" value="measureDistance" checked>
     <label for="measureDistance">MEASURE DISTANCE</label><br>
+
     <input type="radio" id="createSquare" name="mapMenu" value="createSquare">
     <label for="createSquare">CREATE SQAURE</label>
-    <fieldset disabled>
+    <fieldset disabled id="cityFieldset">
       <label for="shita">Please choose a shita:</label>
-
       <select id="shita">
         <option value=".48006">R Chaim Noe</option>
         <option value=".5772">Chazon Ish</option>
@@ -35,7 +43,23 @@
       <input type="color" id="cityColor" name="cityColor" value="#e66465">
       <label for="tchumColor"></label>
       <input type="color" id="tchumColor" name="tchumColor" value="#e66465">
+    </fieldset>
 
+    <input type="radio" id="houseTchum" name="mapMenu" value="houseTchum">
+    <label for="createSquare">Tchum For Single Spot</label>
+    <fieldset disabled id="spotFieldset">
+      <label for="spShita">Please choose a shita:</label>
+      <select id="spShita">
+        <option value=".48006">R Chaim Noe</option>
+        <option value=".5772">Chazon Ish</option>
+        <option value=".53975">R Moshe</option>
+      </select>
+      <label for="spAmos">How Meany Amos?</label>
+      <input type="number" name="spAmos" id="spAmos" value="2000">
+      <label for="cityColor"></label>
+      <input type="color" id="cityColor" name="cityColor" value="#e66465">
+      <label for="tchumColor"></label>
+      <input type="color" id="tchumColor" name="tchumColor" value="#e66465">
     </fieldset>
 
   </form>
