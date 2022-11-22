@@ -16,6 +16,7 @@
   <!--The div elements for the map and message -->
   <div id="map"></div>
   <form>
+    <input type="text" id="pac-input">
     <input type="radio" id="measureDistance" name="mapMenu" value="measureDistance" checked>
     <label for="measureDistance">MEASURE DISTANCE</label><br>
     <input type="radio" id="createSquare" name="mapMenu" value="createSquare">
@@ -40,8 +41,9 @@
   </form>
   <div id="msg"></div>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyt1WK_0kG0c6c10mrBF3vRqDMQ7hCW_8&libraries=geometry">
-  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyt1WK_0kG0c6c10mrBF3vRqDMQ7hCW_8&libraries=geometry,places">
+    </script>
   <script src="./script2.js"></script>
 </body>
 

@@ -5,6 +5,19 @@
     const options = { zoom: 15, scaleControl: true, center: center };
     const map = new google.maps.Map(document.getElementById('map'), options);
 
+    const input = document.getElementById("pac-input");
+    const aUutoCptions = {
+        componentRestrictions: { country: "us" },
+        fields: ["geometry"],
+        strictBounds: false,
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, aUutoCptions);
+    autocomplete.bindTo("bounds", map);
+    autocomplete.addListener("place_changed", () => {
+        console.log(autocomplete.getPlace());
+        map.panTo(autocomplete.getPlace().geometry.location);
+    });
+
     let pinNum = 0;
     let points = [];
     let colorArr = ["blue", "green", "red", "purple", "orange", "pink"];
@@ -19,7 +32,6 @@
     });
 
     function measureAmos(e) {
-        console.log(e);//del
         points[pinNum % 2] = e.latLng;
         new google.maps.Marker({
             position: e.latLng,
