@@ -16,6 +16,13 @@
     autocomplete.addListener("place_changed", () => {
         console.log(autocomplete.getPlace());
         map.panTo(autocomplete.getPlace().geometry.location);
+        new google.maps.Marker({
+            position: autocomplete.getPlace().geometry.location,
+            map: map,
+            icon: {
+                url: `http://maps.google.com/mapfiles/ms/icons/red.png`
+            }
+        });
     });
 
     let pinNum = 0;
@@ -26,7 +33,8 @@
     let measure = map.addListener("click", measureAmos);
     document.getElementById("measureDistance").addEventListener("click", () => {
         measure.remove();
-        document.getElementsByTagName("fieldset")[0].disabled = true;
+        document.getElementById("cityFieldset").disabled = true;
+        document.getElementById("spotFieldset").disabled = true;
         pinNum = 0;
         measure = map.addListener("click", measureAmos);
     });
@@ -51,7 +59,8 @@
     }
     document.getElementById("createSquare").addEventListener("click", () => {
         measure.remove();
-        document.getElementsByTagName("fieldset")[0].disabled = false;
+        document.getElementById("cityFieldset").disabled = false;
+        document.getElementById("spotFieldset").disabled = true;
 
         let theBounds = new google.maps.LatLngBounds();
         pinNum = 0;
@@ -74,18 +83,38 @@
                 theBounds = new google.maps.LatLngBounds();
             }
         });
-        function CreateSquare(bounds, fillColor, opacity = 0.35) {
-            new google.maps.Rectangle({//rectangle of the city
-                clickable: false,
-                strokeColor: "#FF0000",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: fillColor,
-                fillOpacity: opacity,
-                map,
-                bounds: bounds
-            });
-        }
-
     });
+    document.getElementById("houseTchum").addEventListener("click", () => {
+        measure.remove();
+        document.getElementById("spotFieldset").disabled = false;
+        document.getElementById("cityFieldset").disabled = true;
+
+        measure = map.addListener("click", (e) => {
+            new google.maps.Marker({ position: e.latLng, map: map });
+            let theBounds = new google.maps.LatLngBounds();
+            theBounds.extend(e.latLng);
+            let shita = $("#spShita").val();
+            let amos = $("#spAmos").val();
+            let finalAmos = shita * amos;
+            theBounds.extend(google.maps.geometry.spherical.computeOffset(theBounds.getNorthEast(), finalAmos, 0));
+            theBounds.extend(google.maps.geometry.spherical.computeOffset(theBounds.getNorthEast(), finalAmos, 90));
+            theBounds.extend(google.maps.geometry.spherical.computeOffset(theBounds.getSouthWest(), finalAmos, 180));
+            theBounds.extend(google.maps.geometry.spherical.computeOffset(theBounds.getSouthWest(), finalAmos, -90));
+            CreateSquare(theBounds, "#cc8e89", 0.10);
+            theBounds = new google.maps.LatLngBounds();
+        }
+        );
+    });
+    function CreateSquare(bounds, fillColor, opacity = 0.35) {
+        new google.maps.Rectangle({//rectangle of the city
+            clickable: false,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: fillColor,
+            fillOpacity: opacity,
+            map,
+            bounds: bounds
+        });
+    }
 }());
