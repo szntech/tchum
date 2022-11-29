@@ -1,5 +1,9 @@
+h4 {
+    margin-bottom: .5em;
+}
+
 #map {
-    height: 100vh;
+    height: 98vh;
     width: 100%;
 }
 
@@ -7,8 +11,8 @@
     position: absolute;
     width: 40ch;
     top: 20px;
-    height: 2em;
-    font-size: 2em;
+    height: 1.5em;
+    font-size: 1.5em;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -24,6 +28,9 @@
     overflow: hidden;
     height: 40px;
     cursor: pointer;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+
 }
 
 .custom-map-control-button:hover {
