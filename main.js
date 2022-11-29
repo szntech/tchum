@@ -59,7 +59,7 @@
 
     const resetBttn = document.createElement("button");
 
-    resetBttn.textContent = "restart_alt";
+    resetBttn.textContent = "Reset";
     resetBttn.classList.add("custom-map-control-button");
     resetBttn.classList.add("material-symbols-outlined");
 
