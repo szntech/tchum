@@ -12,7 +12,6 @@
 
     const input = document.getElementById("pac-input");
     const aUutoCptions = {
-        componentRestrictions: { country: "us" },
         fields: ["geometry"],
         strictBounds: false,
     };
@@ -59,7 +58,7 @@
 
     const resetBttn = document.createElement("button");
 
-    resetBttn.textContent = "Reset";
+    resetBttn.textContent = "Clear";
     resetBttn.classList.add("custom-map-control-button");
     resetBttn.classList.add("material-symbols-outlined");
 
