@@ -9,7 +9,15 @@
     const options = { zoom: 8, scaleControl: true, center: center, mapTypeId: 'hybrid' };
     const map = new google.maps.Map(document.getElementById('map'), options);
     let squareArr = [];
-
+    if (navigator.geolocation) {
+        let test = navigator.geolocation.getCurrentPosition(setPosition);
+        console.log(test);
+    }
+    function setPosition(position) {
+        console.log(position);
+        map.panTo({ lat: position.coords.latitude, lng: position.coords.longitude });
+        map.setZoom(16);
+    }
     const input = document.getElementById("pac-input");
     const aUutoCptions = {
         fields: ["geometry"],
@@ -18,11 +26,14 @@
     const autocomplete = new google.maps.places.Autocomplete(input, aUutoCptions);
     autocomplete.bindTo("bounds", map);
     autocomplete.addListener("place_changed", () => {
-        //console.log(autocomplete.getPlace());
+        input.value = '';
         let currrentSpot = autocomplete.getPlace().geometry.location;
         map.panTo(currrentSpot);
+        createTchum(currrentSpot);
+    });
+    function createTchum(latLng) {
         let theBounds = new google.maps.LatLngBounds();
-        theBounds.extend(currrentSpot);
+        theBounds.extend(latLng);
         let smallSquare = ExtendSquare(theBounds, daledAmos);
         let largeSquare = ExtendSquare(smallSquare, distance);
         map.fitBounds(largeSquare);
@@ -31,7 +42,7 @@
         smSquare.addListener("bounds_changed", () => { lgSquare.setBounds(ExtendSquare(smSquare.getBounds(), distance)); });
         squareArr.push(smSquare);
         squareArr.push(lgSquare);
-    });
+    }
     function ExtendSquare(bounds, distance) {
         let theBoundsTwo = new google.maps.LatLngBounds();
         theBoundsTwo.extend(google.maps.geometry.spherical.computeOffset(bounds.getNorthEast(), distance, 0));
