@@ -9,6 +9,7 @@
     const options = { zoom: 8, scaleControl: true, center: center, mapTypeId: 'hybrid' };
     const map = new google.maps.Map(document.getElementById('map'), options);
     let squareArr = [];
+    ///get current location
     if (navigator.geolocation) {
         let test = navigator.geolocation.getCurrentPosition(setPosition);
         console.log(test);
@@ -18,6 +19,7 @@
         map.panTo({ lat: position.coords.latitude, lng: position.coords.longitude });
         map.setZoom(16);
     }
+    ///setup autocomplete input
     const input = document.getElementById("pac-input");
     const aUutoCptions = {
         fields: ["geometry"],
@@ -31,6 +33,9 @@
         map.panTo(currrentSpot);
         createTchum(currrentSpot);
     });
+    ///add click listener
+    map.addListener("click", (e) => { createTchum(e.latLng); });
+    ///create tchum based on latlng
     function createTchum(latLng) {
         let theBounds = new google.maps.LatLngBounds();
         theBounds.extend(latLng);
@@ -66,13 +71,11 @@
         });
         return square;
     }
-
+    ///setup reset bttn
     const resetBttn = document.createElement("button");
-
     resetBttn.textContent = "Clear";
     resetBttn.classList.add("custom-map-control-button");
     resetBttn.classList.add("material-symbols-outlined");
-
     resetBttn.addEventListener("click", () => {
         squareArr.forEach((square) => {
             square.setMap(null);
@@ -80,7 +83,7 @@
         squareArr = [];
     });
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(resetBttn);
-
+    ///setup modal
     const modal = document.querySelector('#my-modal');
     //const closeBtn = document.querySelector('.close');
     $("#closeBttn").on("click", closeModal);

@@ -10,12 +10,15 @@ h4 {
 #pac-input {
     position: absolute;
     width: 40ch;
-    top: 20px;
+    top: 0px;
     height: 1.5em;
     font-size: 1.5em;
     left: 0;
     right: 0;
     margin: 0 auto;
+    margin-top: 14px;
+    padding: 0 0.45em;
+    z-index: 1;
 }
 
 .custom-map-control-button {
@@ -35,4 +38,28 @@ h4 {
 
 .custom-map-control-button:hover {
     background: rgb(235, 235, 235);
+}
+
+body {
+    margin: 4px;
+    background: #A9A9A9;
+    background: -moz-radial-gradient(center, #A9A9A9 0%, #E4E4E4 50%, #E1E1E1 100%);
+    background: -webkit-radial-gradient(center, #A9A9A9 0%, #E4E4E4 50%, #E1E1E1 100%);
+    background: radial-gradient(ellipse at center, #A9A9A9 0%, #E4E4E4 50%, #E1E1E1 100%);
+}
+
+@media screen and (max-width: 970px) {
+    #pac-input {
+        box-sizing: border-box;
+        width: 100%;
+        display: block;
+        margin-bottom: 4px;
+        margin-top: 0px;
+        overflow: scroll;
+        position: static;
+    }
+
+    #map {
+        height: 93vh;
+    }
 }
