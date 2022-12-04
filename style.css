@@ -61,7 +61,7 @@ body {
     }
 
     #pac-input::placeholder {
-        font-size: 0.9em;
+        font-size: 0.65em;
     }
 
     #map {
