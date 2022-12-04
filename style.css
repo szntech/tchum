@@ -57,6 +57,7 @@ body {
         margin-top: 0px;
         overflow: scroll;
         position: static;
+        font-size: 1.5em;
     }
 
     #map {
