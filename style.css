@@ -57,6 +57,9 @@ body {
         margin-top: 0px;
         overflow: scroll;
         position: static;
+    }
+
+    #pac-input::placeholder {
         font-size: 0.9em;
     }
 
